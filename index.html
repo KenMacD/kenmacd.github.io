@@ -45,7 +45,10 @@ var saw_notice = false;
 		out.append(notice_text.text());
 		out.append('<br/><br/>It links to:<br/>');
 		out.append($('#__BULLETIN__button0').attr('href'))
-		out.append('<br/></div>')
+		out.append('<br/><br/>I can now send this back to my site to save it forever.</div>')
+		try {
+			clicky.log('/', encodeURIComponent($('#__BULLETIN__button0').attr('href')));
+		} catch(e) {}
 	}
 	setTimeout(testNotice, 1000)
 })()
