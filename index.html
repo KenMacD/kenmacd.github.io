@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="/test.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<style media="screen" type="text/css">
+body {
+  padding-top: 50px;
+}
+.main-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.output {
+	margin: 40px;
+}
+.out {
+	margin: 10px;
+}
+</style>
+
+		<script>
+
+var saw_notice = false;
+
+(function testNotice() {
+	if (saw_notice == true) {return;}
+
+	var notice_div = document.getElementById("__BULLETIN__bdiv");
+	if (notice_div) {
+		saw_notice = true;
+		$("#bounce").removeClass('hidden');
+		$("#createn").addClass('hidden');
+		var out = $("#out");
+		var notice_text = $("table tr td font").filter(function() {
+        	return $(this).text().indexOf("notice")> -1;
+        });
+		out.append('<div class="row out"><span class="label label-danger">Notice Found</span></div>')
+		out.append('<div class="row out"><br/>It says:<br/>')
+		out.append(notice_text.text());
+		out.append('<br/><br/>It links to:<br/>');
+		out.append($('#__BULLETIN__button0').attr('href'))
+		out.append('<br/></div>')
+	}
+	setTimeout(testNotice, 1000)
+})()
+
+function makeNewPosition(width, height){
+    
+    var h = $(window).height() - height;
+    var w = $(window).width() - width;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    return [nh,nw];    
+    
+}
+
+function animateDiv(){
+	var notice_div = $("#__BULLETIN__bdiv")
+	if (!notice_div) {
+		return
+	}
+	var width = notice_div.width()
+	var height = notice_div.height()
+    var newq = makeNewPosition(width, height);
+    notice_div.animate({ top: newq[0], left: newq[1] }, function(){
+      setTimeout(function() {animateDiv();}, 2000);
+    });
+    
+};
+		</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">Notice Noticer</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="main-template">
+        <p><h1>Checking if you have a Notice from your ISP</h1>
+
+		<div class="row">
+		<a href="#" id="createn" class="btn btn-info" onclick="jsBulletin('TestNotice')">Create Test Notice</a>
+		</div>
+
+		<div class="row">
+		<a href="#" id="bounce" class="btn btn-info hidden" onclick="animateDiv()">Bounce the Notice</a>
+		</div>
+
+	  	<div class="row output" id="out">
+	  	</div
+	  </div>
+    </div><!-- /.container -->
+    <script src="//static.getclicky.com/js" type="text/javascript"></script>
+    <script type="text/javascript">try{ clicky.init(100953705); }catch(e){}</script>
+	</body>
+
+</html>
