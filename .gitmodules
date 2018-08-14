@@ -1,0 +1,3 @@
+[submodule "themes/darksimplicity"]
+	path = themes/darksimplicity
+	url = https://github.com/kritoke/darksimplicity.git

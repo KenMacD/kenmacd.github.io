@@ -1,0 +1,19 @@
+baseURL = "https://kenmacd.github.io/"
+languageCode = "en-us"
+title = "Blog"
+theme = "darksimplicity"
+
+[params]
+  description = "A Simple Blog"
+
+[menu]
+  [[menu.top]]
+  name = "GitHub"
+  pre = ""
+  weight = -100
+  url = "https://github.com/KenMacD"
+  [[menu.top]]
+  name = "Twitter"
+  pre = ""
+  weight = -100
+  url = "https://twitter.com/KennyMacDermid"
